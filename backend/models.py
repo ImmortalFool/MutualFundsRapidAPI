@@ -10,16 +10,18 @@ class CreateUser(BaseModel):
     username: str
     password: str
 
-
 class Users(BaseModel):
     username: str
 
 
 class Purchase(BaseModel):
-    scheme_code: int
-    scheme_name: str
-    price: float
-    scheme_type: str
-    scheme_category: str
-    fund_family: str
+    Scheme_Code: int
+    ISIN_Div_Payout_ISIN_Growth: str
+    ISIN_Div_Reinvestment: str
+    Scheme_Name: str
+    Net_Asset_Value: float
+    Date: str
+    Scheme_Type: str
+    Scheme_Category: str
+    Mutual_Fund_Family: str
     quantity: int

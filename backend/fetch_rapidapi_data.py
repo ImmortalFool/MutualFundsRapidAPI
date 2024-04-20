@@ -1,12 +1,16 @@
 import requests
 import copy
+import os
+
+from dotenv import load_dotenv
+load_dotenv()
 
 URL = "https://latest-mutual-fund-nav.p.rapidapi.com/latest"
 querystring = {"Scheme_Type": "Open"}
 
 headers = {
-    "X-RapidAPI-Key": "ea2b8d332emshc0eca5cda726f2fp18353djsn619925031603",
-    "X-RapidAPI-Host": "latest-mutual-fund-nav.p.rapidapi.com"
+	"X-RapidAPI-Key": os.getenv("RAPIDAPI_KEY"),
+	"X-RapidAPI-Host": "latest-mutual-fund-nav.p.rapidapi.com"
 }
 
 
@@ -23,6 +27,6 @@ def get_filtered_data(fund_family: str | None = None):
     query_string = copy.deepcopy(querystring)
     if fund_family:
         query_string["Mutual_Fund_Family"] = fund_family
-    response = requests.get(URL, headers=headers, params=querystring)
+    response = requests.get(URL, headers=headers, params=query_string)
 
     return response.json()

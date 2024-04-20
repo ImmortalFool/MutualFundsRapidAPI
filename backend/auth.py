@@ -55,16 +55,6 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
         )
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED)
-async def create_user(create_user_request: CreateUser):
-    user_name = create_user_request.username
-    password = bcrypt_context.hash(create_user_request.password)
-    return {
-        'username': user_name,
-        'password': password
-    }
-
-
 @router.post('/v1/token', response_model=Token)
 async def login_token(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     user = authenticate_user(form_data.username, form_data.password)
